@@ -3,75 +3,58 @@ import {
   Link,
   useHistory,
 } from "react-router-dom";
-import { ErrorMessage, useFormik } from "formik";
-import { useState } from "react";
+import {
+  ErrorMessage,
+  useFormik,
+  validateYupSchema,
+} from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
+import Input from "../Component/Input";
+import { FiLock, FiUser } from "react-icons/fi";
+
 interface Props {}
 const Login: React.FC<Props> = (props) => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-  const [touched, setTouched] = useState({
-    email: false,
-    password: false,
-  });
-  const [submitting, setSubmitting] =
-    useState(false);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleBlur = (
-    event: React.FocusEvent<HTMLInputElement>
-  ) => {
-    setTouched({
-      ...touched,
-      [event.target.name]: true,
-    });
-  };
-
-  let emailError = "";
-  let passwordError = "";
-
-  const formValidator = yup.object().shape({
-    email: yup.string().required().email(),
-    password: yup.string().required().min(8),
-  });
-
-  console.log(
-    "form valid ",
-    formValidator.isValidSync(data)
-  );
-
-  if (!data.email) {
-    emailError = "email is required";
-  } else if (!data.email.endsWith("@gmail.com")) {
-    emailError =
-      "please enter a valid email error";
-  }
-
-  if (!data.password) {
-    passwordError = "password is required";
-  } else if (data.password.length < 8) {
-    passwordError =
-      "password should be atleast of 8 characters";
-  }
-
   const history = useHistory();
 
+  const {
+    handleSubmit,
+    getFieldProps,
+    touched,
+    isSubmitting,
+    errors,
+    isValid,
+  } = useFormik({
+    initialValues: {
+      email: " ",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup
+        .string()
+        .required()
+        .min(
+          8,
+          ({ min }) =>
+            "Atleast " + min + " character!!! "
+        ),
+    }),
+
+    onSubmit: (data, { setSubmitting }) => {
+      console.log("form submiting ", data);
+      setTimeout(() => {
+        console.log("form submit successfully ");
+        history.push("/dashboard");
+      }, 5000);
+    },
+  });
+
   return (
-    <div className=" flex justify-center text-gray-700 font-sans w-1/2  ">
-      <div className="flex flex-col align-center self-center w-7/12 pt-9">
-        <div className="text-left">
-          <div>
+    <div className=" flex  justify-center text-gray-700 font-sans w-1/2 min-h-screen   ">
+      <div className="flex flex-col align-center justify-center max-w-md px-2 pt-5">
+        <div className="text-left pl-3">
+          <div className="pl-2">
             <h1 className="text-2.5 mb-7">
               Log In to
               <a
@@ -92,147 +75,82 @@ const Login: React.FC<Props> = (props) => {
               </Link>
             </p>
           </div>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (emailError || passwordError) {
-                console.log("form submit failed");
-                return;
-              } else {
-                setSubmitting(true);
-                setTimeout(() => {
-                  console.log(
-                    "login successfull"
-                  );
-                  console.log(
-                    "login with data ",
-                    data
-                  );
-                  history.push("/dashboard");
-                }, 5000);
-              }
-            }}
-          >
-            <div className=" text-left px-3">
-              <div className="relative pt-3 pb-7 ">
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="text-blue-600 fill-blue top-3 absolute"
-                  >
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle
-                      cx="12"
-                      cy="7"
-                      r="4"
-                    ></circle>
-                  </svg>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={data.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    required
-                    placeholder="Username"
-                    className="inline-block pl-9 pb-4 placeholder-gray-300 w-full border-gray-200 border-b  outline-none  "
-                  ></input>
-                  {touched.email && (
-                    <div className="text-xs text-red-500">
-                      {emailError}
-                    </div>
-                  )}
-                </div>
-              </div>
+          <form onSubmit={handleSubmit}>
+            <div className=" inline-flex  w-full  ">
+              <FiUser className=" mt-3 h-6 w-6 text-blue-600 fill-blue " />
 
-              <div className="relative pt-3 pb-8 ">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="text-blue-600 fill-blue top-3 absolute"
-                >
-                  <rect
-                    x="3"
-                    y="11"
-                    width="18"
-                    height="11"
-                    rx="2"
-                    ry="2"
-                  ></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  value={data.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                  className="inline-block placeholder-gray-300 pl-9 pb-4 w-full border-gray-200 border-b  outline-none "
-                ></input>
-                {touched.password && (
-                  <div className="text-xs text-red-500">
-                    {passwordError}
-                  </div>
-                )}
+              <Input
+                id="email"
+                type="email"
+                autoComplete="email"
+                placeholder="Username"
+                required
+                touched={touched.email}
+                error={errors.email}
+                {...getFieldProps("email")}
+              />
+            </div>
+
+            <div className=" inline-flex  w-full  ">
+              <FiLock className=" mt-3 h-6 w-6 text-blue-600 fill-blue" />
+              <Input
+                id="password"
+                type="password"
+                autoComplete="password"
+                placeholder="Password"
+                required
+                touched={touched.password}
+                error={errors.password}
+                {...getFieldProps("password")}
+              />
+            </div>
+
+            <div className="flex flex-row pl-2 ">
+              <div className=" flex flex-row min-w-max">
+                <h2 className="pr-2 text-sm  text-gray-900 tracking-wider">
+                  Show Password
+                </h2>
+                <div className="w-8 h-4 flex items-center bg-gray-200  rounded-full py-1 duration-300 ease-in-out">
+                  <div className="bg-blue-600 w-3 h-3 rounded-full shadow-md transform duration-300 ease-in-out"></div>
+                </div>
               </div>
 
               <div className="flex flex-row w-full justify-end">
                 <button
-                  disabled={
-                    !formValidator.isValidSync(
-                      data
-                    )
-                  }
+                  disabled={!isValid}
                   type="submit"
                   className="bg-blue-600 text-white shadow-blueshadow transition-shadow hover:shadow-none px-5 py-by text-base rounded-md disabled:cursor-not-allowed "
                 >
                   Log in
                 </button>
-                {submitting && (
-                  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner>
-                )}
-              </div>
-              <div className=" mt-20 text-center">
-                <label className="text-sm ml-8 text-textgray tracking-wider">
-                  <input
-                    type="checkbox"
-                    name="keepsignIn"
-                    className="pb-2 pl-9"
-                  />
-                  <span className="top-1 pr-2 " />
-                  keep me logged in
-                </label>
-              </div>
-              <div className="text-center pl-7 mt-7 leading-tight">
-                <Link
-                  to="/ForgotPAssword"
-                  className="text-blue-600 text-md tracking-widest font-medium "
-                >
-                  Forgot password ?
-                </Link>
+                <div className="w-4">
+                  {isSubmitting && (
+                    <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner>
+                  )}
+                </div>
               </div>
             </div>
+            <div className=" mt-16 text-center">
+              <label className="text-sm  text-textgray tracking-wider">
+                <input
+                  type="checkbox"
+                  name="keepsignIn"
+                  className="pb-2 pl-9"
+                />
+                <span className="top-1 pr-2 " />
+                keep me logged in
+              </label>
+            </div>
+            <div className="text-center pl-7 mt-7 leading-tight">
+              <Link
+                to="/ForgotPAssword"
+                className="text-blue-600 text-md tracking-widest font-medium "
+              >
+                Forgot password ?
+              </Link>
+            </div>
           </form>
-          <p className="text-sm tracking-wider font-medium text-gray-500 pt-20 ">
+          <p className="text-sm tracking-wider font-medium text-gray-500 pt-16 pl-4 ">
             © 2020 All Rights Reserved.
             <a href="/" className="text-blue-600">
               CORK
