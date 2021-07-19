@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '2.5': ['40px', '19.2px']
+        '2.5': ['40px', '45px']
     },
     fill:{
       'blue': 'rgba(27, 85, 226, 0.23921568627450981)'
