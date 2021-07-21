@@ -5,13 +5,13 @@ import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
 import Input from "../Component/Input";
 import {FiLock, FiUser} from "react-icons/fi"
+import ToggleSwitch from "../Component/ToggleSwitch";
 
 
 interface Props {}
 const Login: React.FC<Props> = (props) => {
 
   const history = useHistory();
-
 
   const {handleSubmit, getFieldProps, touched , isSubmitting, errors, isValid } = useFormik({
     initialValues : {
@@ -34,11 +34,9 @@ const Login: React.FC<Props> = (props) => {
      
     })
 
-
-  
   
   return (
-    <div className=" flex  justify-center text-gray-700 font-sans w-1/2 min-h-screen   ">
+    <div className=" flex  justify-center text-gray-700 font-sans lg:w-1/2 min-h-screen  w-full  ">
       <div className="flex flex-col max-w-md px-2 justify-center">
         <div className="text-left pl-3">
       
@@ -62,15 +60,13 @@ const Login: React.FC<Props> = (props) => {
           
       <form 
           onSubmit = {handleSubmit}
-      
-          >
-    <div className=" mb-6">
-    
-        <div className=" inline-flex  w-full  ">
-         
-          <FiUser className=" mt-3 h-6 w-6 text-blue-600 fill-blue " />
-           
-          <Input 
+          className="pl-3"
+      >
+
+          <div>
+     
+         <Input 
+             Icon={FiUser}
              id="email"
              type="email"
              autoComplete="email"
@@ -78,18 +74,13 @@ const Login: React.FC<Props> = (props) => {
              required
              touched={touched.email}
              error= {errors.email}
+             
              {...getFieldProps("email")}
              
             />
-
-            </div>
           
-        
-     
-
-        <div className=" inline-flex  w-full  ">
-          <FiLock className=" mt-3 h-6 w-6 text-blue-600 fill-blue" />
           <Input 
+             Icon={FiLock}
              id="password"
              type="password"
              autoComplete="password"
@@ -100,69 +91,66 @@ const Login: React.FC<Props> = (props) => {
              {...getFieldProps("password")}
              
             />
-            </div>
-      </div>
 
-            <div className="flex flex-row pl-2 ">
-
-            <div className=" flex flex-row min-w-max" >
-  
-                <h2 className="pr-2 text-sm  text-gray-900 tracking-wider" >Show Password</h2>
-                <div className="w-8 h-4 flex items-center bg-gray-200  rounded-full py-1 duration-300 ease-in-out"  >
-                <div className="bg-blue-600 w-3 h-3 rounded-full shadow-md transform duration-300 ease-in-out"  >
-                </div>
-                </div>
             </div>
              
-            <div className="flex flex-row w-full justify-end">
-              
+
+      <div className=" flex flex-row">
+
+            <ToggleSwitch toggleText="Show Password"></ToggleSwitch>
+             
+            <div className="flex flex-row  w-full justify-end">           
                 <button
                   disabled={!isValid}
                   type="submit"
-                  className="bg-blue-600 text-white shadow-blueshadow transition-shadow hover:shadow-none px-5 py-by text-base rounded-md disabled:cursor-not-allowed "
-                >
+                  className="bg-blue-600 text-white shadow-blueshadow transition-shadow hover:shadow-none px-5  py-by text-base rounded-md disabled:cursor-not-allowed "
+                   >
                   Log in
                 </button>
                 <div className="w-4">
-                {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }</div>
-              </div>
-           </div>
+                     {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }
+                </div>
+            </div>
+       </div>
 
-          <div className=" mt-16 text-center">
-                <label className="text-sm  text-textgray tracking-wider">
-                  <input
-                    type="checkbox"
-                    name="keepsignIn"
-                    className="pb-2 w-4 h-4 mr-3"
-                  />
-                  keep me logged in
-                </label>
-          </div>
+      <div className=" mt-14 text-center  "  >
+         <label className="text-sm  text-textgray tracking-wider">
+          <input
+            type="checkbox"
+            name="keepsignIn"
+            className="pb-2 w-4 h-4 mr-3 "
+            />
+           keep me logged in
+         </label>
+      </div>
 
-          <div className="text-center pl-7 mt-5 leading-tight">
-                <Link to="/ForgotPAssword" className="text-blue-600 text-md tracking-widest font-medium ">
-                  Forgot password ?
-                </Link>
-          </div>    
-          </form>
+      <div className="text-center pl-6 mt-5 leading-tight">
+          <Link to="/ForgotPAssword" className="text-blue-600 font-sans text-base tracking-widest font-medium ">
+              Forgot Password ?
+          </Link>
+      </div>   
 
-          <div className=" pt-16 pl-4 ">
-          <p className="text-sm tracking-wider font-medium text-gray-500 ">
+
+    </form>
+
+    <div className=" pt-20 pl-4 ">
+          <p className="text-sm tracking-wider font-normal  text-gray-900 ">
             © 2020 All Rights Reserved.
-            <a href="/" className="text-blue-600">
+            <a href="/" className="text-blue-600 font-medium">
               CORK
             </a>
             is a product of Designreset.
-            <a href="/" className="text-blue-600">
+            <a href="/" className="text-blue-600 font-medium">
               Cookie Preferences, Privacy
             </a>
             , and
-            <a href="/" className="text-blue-600">
+            <a href="/" className="text-blue-600 font-medium">
               Terms.
             </a>
           </p>
-        </div>
+    </div>
 
+        
   </div>
   </div>
   </div>
@@ -172,6 +160,7 @@ const Login: React.FC<Props> = (props) => {
 Login.defaultProps = {};
 
 export default memo(Login);
+
 
 
 

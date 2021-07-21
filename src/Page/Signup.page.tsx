@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
 import Input from "../Component/Input";
 import {FiAtSign, FiLock, FiUser} from "react-icons/fi"
+import ToggleSwitch from "../Component/ToggleSwitch";
 
 
 interface Props{
@@ -13,7 +14,6 @@ interface Props{
 const Signup: React.FC<Props> = (props) => {
 
   const history = useHistory();
-
 
   const {handleSubmit, getFieldProps, touched , isSubmitting, errors, isValid } = useFormik({
     initialValues : {
@@ -46,7 +46,7 @@ const Signup: React.FC<Props> = (props) => {
       <div className="text-left pl-3">
     
         <div className="pl-2">
-          <h1 className=" text-2.5 tracking-wider mb-5">
+          <h1 className=" text-2.5 tracking-wider mb-2">
           Get started with a free account
           </h1>
           <p className="text-sm font-medium mb-12 tracking-wider">
@@ -61,21 +61,16 @@ const Signup: React.FC<Props> = (props) => {
         </div>
 
 
-
         <form 
         onSubmit = {handleSubmit}
         >
         
-
         <div className="pl-3">
-
-       <div className=" inline-flex  w-full  ">
-       
-           <FiUser className=" mt-3 h-6 w-6 text-blue-600 fill-blue " />
-         
+  
            <Input 
+           Icon={FiUser}
            id="Username"
-           type="Email"
+           type="Username"
            autoComplete="Username"
            placeholder="Username"
            required
@@ -84,15 +79,9 @@ const Signup: React.FC<Props> = (props) => {
            {...getFieldProps("Username")}
            
           />
-
-      </div>
-
-
-      <div className=" inline-flex  w-full  ">
-       
-       <FiAtSign className=" mt-3 h-6 w-6 text-blue-600 fill-blue " />
-      
+  
        <Input 
+          Icon={FiAtSign}
           id="email"
           type="email"
           autoComplete="email"
@@ -102,14 +91,10 @@ const Signup: React.FC<Props> = (props) => {
           error= {errors.email}
           {...getFieldProps("email")}
           
-         />
-
-      </div>
-        
-
-      <div className=" inline-flex  w-full  ">
-        <FiLock className=" mt-3 h-6 w-6 text-blue-600 fill-blue" />
+         />   
+      
         <Input 
+          Icon={FiLock}
            id="password"
            type="password"
            autoComplete="password"
@@ -120,7 +105,7 @@ const Signup: React.FC<Props> = (props) => {
            {...getFieldProps("password")}
            
           />
-      </div>
+    
       </div>
 
           <div className=" pl-3">
@@ -133,16 +118,10 @@ const Signup: React.FC<Props> = (props) => {
               </label>
         </div>
 
-    <div className="flex flex-row pl-3 pt-10 ">
+    <div className="flex flex-row pl-3 pt-8 ">
+      
 
-          <div className=" flex flex-row min-w-max" >
-
-              <h2 className="pr-2 text-sm  text-gray-900 tracking-wider" >Show Password</h2>
-              <div className="w-8 h-5 flex items-center bg-gray-200  rounded-full py-1 duration-300 ease-in-out"  >
-              <div className="bg-blue-600 w-3 h-3 rounded-full shadow-md transform duration-300 ease-in-out"  >
-              </div>
-              </div>
-          </div>
+    <ToggleSwitch toggleText="Show Password"></ToggleSwitch>
            
           <div className="flex flex-row w-full justify-end">
             
