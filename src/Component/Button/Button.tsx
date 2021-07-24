@@ -10,26 +10,26 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
 const Button: React.FC<Props> = ({children, buttonType,className, type, theme, ...rest}) => {
 
 let color="" , themedesign = " ";
-if(theme=='primary'){
+if(theme === 'primary'){
   color = "blue"
 }
-else if (theme == "success"){
+else if (theme === "success"){
   color = "green"
 }
-else if(theme == "Warning"){
+else if(theme === "Warning"){
   color = "yellow"
 }
-else if(theme == "Danger"){
+else if(theme === "Danger"){
   color = "red"
 }
-else if(theme == "Secondary"){
+else if(theme === "Secondary"){
   color = "indigo"
 }
 else{
   color="gray"
 }
 
-if ( buttonType == "solidify"){
+if ( buttonType === "solidify"){
   themedesign = "bg-"+color+"-500" + " " + "text-white shadow-"+color + " "+ "hover:shadow-none";
 }
 else{

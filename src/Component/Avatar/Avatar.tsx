@@ -1,7 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { boolean } from "yup/lib/locale";
+
 interface Props{
     isOnline? : boolean;
     imageLink : string;
@@ -11,10 +9,10 @@ const Avatar: React.FC<Props> = ({ isOnline, imageLink, className }) => {
 
     let background = " ";
      
-     if(isOnline == true){
+     if(isOnline === true){
          background =  'border-2 bg-green-600'
      }
-     else if (isOnline == false) {
+     else if (isOnline === false) {
          background = "border-2 bg-gray-400"
      }
      else{

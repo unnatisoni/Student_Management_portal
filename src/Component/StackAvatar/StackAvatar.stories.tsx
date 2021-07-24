@@ -1,5 +1,5 @@
 import StackAvatar from "./StackAvatar";
-import Avatar from "../Avatar/Avatar";
+
 import "../../index.css";
 
 

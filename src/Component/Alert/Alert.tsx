@@ -15,23 +15,23 @@ const Alert: React.FC<Props> = ({children , theme , alertType}) => {
   const [open, setOpen] = useState(true);
   
 let color="" , themedesign="";
-if(alertType =='primary'){
+if(alertType ==='primary'){
   color = "blue"
 }
-else if (alertType == "success"){
+else if (alertType === "success"){
   color = "green"
 }
-else if(alertType == "Warning"){
+else if(alertType === "Warning"){
   color = "yellow"
 }
-else if(alertType == "Error"){
+else if(alertType === "Error"){
   color = "red"
 }
-else if(alertType == "Info"){
+else if(alertType === "Info"){
   color = "indigo"
 }
 
-if(theme == "Default"){
+if(theme === "Default"){
   themedesign ="bg-"+color+"-100 text-"+color+"-400";
 }
 else{

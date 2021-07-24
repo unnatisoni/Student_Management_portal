@@ -18,7 +18,7 @@ const StackAvatar: React.FC<Props> = ({usersNumber, imageLinkArary}) => {
        { users>=2 &&  <Avatar className="hover:-translate-y-3  duration-500  transform" imageLink={ imageLinkArary[1]}></Avatar> }
        { users>=3 &&  <Avatar className="hover:-translate-y-3 duration-500  transform" imageLink={imageLinkArary[2]}></Avatar> }
        { users>=4 &&  <Avatar className="hover:-translate-y-3 duration-500  transform" imageLink={imageLinkArary[3]}></Avatar> }
-        { n!=0 && <div className=" relative bg-white text-blue-600 rounded-full border shadow-2xl w-max my-5 px-3 h-7 mr-2 hover:-translate-y-3 transform duration-500  "> +{n} more </div> }
+        { n!==0 && <div className=" relative bg-white text-blue-600 rounded-full border shadow-2xl w-max my-5 px-3 h-7 mr-2 hover:-translate-y-3 transform duration-500  "> +{n} more </div> }
     </div>
 );
 };
