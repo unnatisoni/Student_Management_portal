@@ -4,9 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 import { ErrorMessage, useFormik, validateYupSchema } from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
-import Input from "../Component/Input";
+import Input from "../Component/Input/Input";
 import {FiAtSign, FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
+import Button from "../Component/Button/Button";
 
 
 interface Props{
@@ -124,14 +125,8 @@ const Signup: React.FC<Props> = (props) => {
     <ToggleSwitch toggleText="Show Password"></ToggleSwitch>
            
           <div className="flex flex-row w-full justify-end">
-            
-              <button
-                disabled={!isValid}
-                type="submit"
-                className="bg-blue-600 text-white shadow-blueshadow transition-shadow hover:shadow-none px-5 py-by text-base rounded-md disabled:cursor-not-allowed "
-              >
-                Get Started!
-              </button>
+          <Button buttonType="solidify" theme="primary" disabled={!isValid} >   Get Started! </Button>
+      
               <div className="w-4">
               {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }</div>
             </div>

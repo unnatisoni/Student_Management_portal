@@ -3,9 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import { ErrorMessage, useFormik, validateYupSchema } from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
-import Input from "../Component/Input";
+import Input from "../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
+import Button from "../Component/Button/Button";
+
 
 
 interface Props {}
@@ -95,18 +97,14 @@ const Login: React.FC<Props> = (props) => {
             </div>
              
 
-      <div className=" flex flex-row">
+      <div className=" flex flex-row mt-2">
 
             <ToggleSwitch toggleText="Show Password"></ToggleSwitch>
              
-            <div className="flex flex-row  w-full justify-end">           
-                <button
-                  disabled={!isValid}
-                  type="submit"
-                  className="bg-blue-600 text-white shadow-blueshadow transition-shadow hover:shadow-none px-5  py-by text-base rounded-md disabled:cursor-not-allowed "
-                   >
-                  Log in
-                </button>
+            <div className="flex flex-row  w-full justify-end">     
+             
+            <Button buttonType="solidify" theme="primary" disabled={!isValid} >Sign in</Button>
+  
                 <div className="w-4">
                      {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }
                 </div>
