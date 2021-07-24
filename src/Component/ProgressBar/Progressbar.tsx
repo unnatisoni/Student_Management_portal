@@ -1,5 +1,5 @@
 import React from "react";
-import { number } from "yup";
+
 interface Props{
   performance : number;
 }
@@ -25,10 +25,10 @@ else{
   color = "blue"
 }
 
-status = "bg-"+color+ "-600"
+status = ' bg-'+color+'-600  ';
   return (
     <div className=" relative h-3 w-full m-3 bg-gray-300 rounded-full ">
-        <div  className={" absolute rounded-full h-3 w-"+ String(~~(performance/10))+"/12" + " " + status + (performance === 100 ? " w-full" : "")}  >
+        <div  className={" absolute rounded-full h-3 w-"+ String(~~(performance/10))+"/12" + status + (performance === 100 ? "  w-full " : " ")}  >
 
         </div>
     </div>

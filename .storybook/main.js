@@ -26,9 +26,13 @@ module.exports = {
           },
         },
       ],
+      performance: {
+        maxEntrypointSize: 512000000,
+        maxAssetSize: 512000000
+    },
       include: path.resolve(__dirname, '../'),
     });
     return config
   },
 
-}
+};

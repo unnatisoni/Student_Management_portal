@@ -13,7 +13,7 @@ let color=' ' , themedesign = ' ';
 if(theme === 'primary'){
   color = 'blue';
 }
-else if (theme === 'success'){
+else if(theme === 'success'){
   color = 'green';
 }
 else if(theme === 'Warning'){
@@ -29,16 +29,13 @@ else{
   color='gray';
 }
 
-if ( buttonType === 'solidify'){
-  themedesign = 'bg-'+color+'-500' + ' ' + 'text-white shadow-'+color + ' '+'hover:shadow-none';
+if(buttonType === 'solidify'){
+  themedesign = 'bg-'+color+'-500 text-white shadow-'+color+'  hover:shadow-none ';
 }
 else{
-  themedesign = 'bg-white text-'+color+'-700 border border-'+color+'-400 hover:shadow-'+color + ' ' + 'hover:bg-'+color+'-700' + ' '+ 'hover:text-white';
+  themedesign = 'bg-white text-'+color+'-700 border border-'+color+'-400 hover:shadow-'+color+' hover:bg-'+color+'-700 hover:text-white ';
 }
-
-
-     
-    
+  
 
   return (
 
@@ -46,7 +43,7 @@ else{
             <button
                  {...rest}
                  
-                  className={' transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed ' + ' ' +  themedesign + ' ' +className}
+                  className={' transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed ' +   themedesign  + className}
                    >
                  {children}
                 </button>
@@ -66,4 +63,3 @@ Button.defaultProps = {
 export default Button;
 
 
-// 

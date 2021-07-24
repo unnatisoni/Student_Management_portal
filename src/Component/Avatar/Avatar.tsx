@@ -22,10 +22,10 @@ const Avatar: React.FC<Props> = ({ isOnline, imageLink, className }) => {
   return (
   
        
-    <div className={"relative " + " "+ className}>
+    <div className={'relative ' + className}>
     <img className="object-cover w-16 h-16 rounded-full border border-white"
-        src={imageLink} />
-    <span className={"absolute w-4 h-4 border-white rounded-full bottom-1 left-12 "+ " "+ background}></span>
+        src={imageLink} alt="avatar" />
+    <span className={'absolute w-4 h-4 border-white rounded-full bottom-1 left-12 '+ background}></span>
 </div>
         
  
