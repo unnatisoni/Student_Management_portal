@@ -2,8 +2,8 @@ import React from "react";
 
 interface Props{
     isOnline? : boolean;
-    imageLink : string;
-    className : string;
+    imageLink? : string;
+    className? : string;
 }
 const Avatar: React.FC<Props> = ({ isOnline, imageLink, className }) => {
 
@@ -22,8 +22,8 @@ const Avatar: React.FC<Props> = ({ isOnline, imageLink, className }) => {
   return (
   
        
-    <div className={'relative ' + className}>
-    <img className="object-cover w-16 h-16 rounded-full border border-white"
+    <div className='relative '>
+    <img className={"object-cover w-16 h-16 rounded-full border border-white " + className }
         src={imageLink} alt="avatar" />
     <span className={'absolute w-4 h-4 border-white rounded-full bottom-1 left-12 '+ background}></span>
 </div>

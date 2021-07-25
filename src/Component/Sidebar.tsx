@@ -4,8 +4,9 @@ interface Props{
 }
 const Sidebar: React.FC<Props> = (props) => {
   return (
-    <div className="bg-gray-400 h-screen w-1/5">
-        sidebar component
+    <div className=" bg-gray-400 h-screen w-1/5">
+    
+        This is sidebar component
     </div>
 );
 };

@@ -20,6 +20,7 @@ const Template =  (args : any) => <Progressbar {...args} ></Progressbar>
 
 export const Main: any = Template.bind({});
 Main.args = {
+    performance : 50,
   
   
 

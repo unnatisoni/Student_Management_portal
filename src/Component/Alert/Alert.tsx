@@ -32,7 +32,7 @@ else if(alertType === 'Info'){
 }
 
 if(theme === 'Default'){
-  themedesign =' bg-'+color+'-100 text-'+color+'-400';
+  themedesign = ' bg-'+color+'-100 text-'+color+'-400';
 }
 else{
   themedesign = 'border border-solid border-'+color+'-500 text-gray-400 bg-white';

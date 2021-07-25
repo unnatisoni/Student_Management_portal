@@ -42,7 +42,7 @@ const Signup: React.FC<Props> = (props) => {
 
   return (
 
-    <div className=" flex  justify-center text-gray-700 font-sans w-1/2 min-h-screen   ">
+    <div className=" flex  justify-center text-gray-700 font-sans w-full lg:w-1/2 min-h-screen   ">
     <div className="flex flex-col align-center justify-center max-w-md px-2 ">
       <div className="text-left pl-3">
     
@@ -125,7 +125,13 @@ const Signup: React.FC<Props> = (props) => {
     <ToggleSwitch toggleText="Show Password"></ToggleSwitch>
            
           <div className="flex flex-row w-full justify-end">
-          <Button buttonType="solidify" theme="primary" disabled={!isValid} >   Get Started! </Button>
+          <button
+                disabled={!isValid}
+                type="submit"
+                className="bg-blue-600 text-white shadow-blue transition-shadow hover:shadow-none px-5 py-by text-base rounded-md disabled:cursor-not-allowed "
+              >
+                Get Started!
+              </button>
       
               <div className="w-4">
               {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }</div>

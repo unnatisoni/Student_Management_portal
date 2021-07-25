@@ -1,5 +1,7 @@
 import React from "react";
 import { ButtonHTMLAttributes } from "react";
+
+
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
     theme: 'primary' | 'success' | 'Warning' | 'Danger' | 'Secondary' | 'Dark'  ;
     buttonType : 'solidify' | 'outline' ;
@@ -9,7 +11,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 const Button: React.FC<Props> = ({children, buttonType,className, type, theme, ...rest}) => {
 
-let color=' ' , themedesign = ' ';
+let color=' ', themecolor= ' ';
 if(theme === 'primary'){
   color = 'blue';
 }
@@ -29,11 +31,10 @@ else{
   color='gray';
 }
 
-if(buttonType === 'solidify'){
-  themedesign = 'bg-'+color+'-500 text-white shadow-'+color+'  hover:shadow-none ';
-}
-else{
-  themedesign = 'bg-white text-'+color+'-700 border border-'+color+'-400 hover:shadow-'+color+' hover:bg-'+color+'-700 hover:text-white ';
+if(buttonType === "solidify"){
+themecolor = ' bg-'+color+'-500 text-white shadow-'+color+'  hover:shadow-none '
+}else{
+themecolor = ' bg-white text-'+color+'-700 border border-'+color+'-400 hover:shadow-'+color+' hover:bg-'+color+'-700 hover:text-white '
 }
   
 
@@ -43,7 +44,7 @@ else{
             <button
                  {...rest}
                  
-                  className={' transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed ' +   themedesign  + className}
+                  className={'transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed  '+ themecolor + className }
                    >
                  {children}
                 </button>

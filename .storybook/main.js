@@ -10,7 +10,6 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app"
   ],
-
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.css$/,
@@ -26,13 +25,8 @@ module.exports = {
           },
         },
       ],
-      performance: {
-        maxEntrypointSize: 512000000,
-        maxAssetSize: 512000000
-    },
       include: path.resolve(__dirname, '../'),
-    });
+    })
     return config
   },
-
 };

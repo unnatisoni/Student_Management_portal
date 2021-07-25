@@ -9,16 +9,16 @@ let color=" ", status= "";
 if( performance > 85){
   color = "gray"
 }
-else if ( performance > 70 ){
+else if(performance > 70){
   color = "indigo"
 }
-else if ( performance > 55){
+else if(performance > 55){
   color = "red"
 }
-else if ( performance > 40 ){
+else if(performance > 40){
   color = "yellow"
 }
-else if (performance > 25){
+else if(performance > 25){
   color = "green"
 }
 else{

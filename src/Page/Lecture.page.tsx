@@ -2,6 +2,7 @@ import { stringify } from "querystring";
 import React from "react";
 import { memo } from "react";
 import { useParams } from "react-router-dom";
+import Navbar from "../Component/Navbar";
 interface Props{
 }
 const Lecture: React.FC<Props> = (props) => {
@@ -9,6 +10,7 @@ const Lecture: React.FC<Props> = (props) => {
   
   return (
     <div>
+      <Navbar></Navbar>
         This is lecture Page of {lectureNumber} of batch {batchNumber}
 
     </div>

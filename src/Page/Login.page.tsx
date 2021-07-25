@@ -103,7 +103,13 @@ const Login: React.FC<Props> = (props) => {
              
             <div className="flex flex-row  w-full justify-end">     
              
-            <Button buttonType="solidify" theme="primary" disabled={!isValid} >Sign in</Button>
+            <button
+                disabled={!isValid}
+                type="submit"
+                className="bg-blue-600 text-white shadow-blue transition-shadow hover:shadow-none px-5 py-by text-base rounded-md disabled:cursor-not-allowed "
+              >
+                Sign in
+              </button>
   
                 <div className="w-4">
                      {isSubmitting &&  <FaSpinner className="animate-spin mt-3 ml-2"></FaSpinner> }

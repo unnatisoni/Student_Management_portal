@@ -17,9 +17,9 @@ const Template = (args : any) => <Button {...args} ></Button>
 export const solidifiy : any = Template.bind({});
 solidifiy.args = {
     children : "sign in",
-    type : "submit",
     className : "",
     disabled : false,
+    
 
 };
 
