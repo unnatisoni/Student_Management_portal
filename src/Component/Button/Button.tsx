@@ -11,30 +11,36 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 const Button: React.FC<Props> = ({children, buttonType,className, type, theme, ...rest}) => {
 
-let color=' ', themecolor= ' ';
+let forsolidify = ' ', foroutline = ' ', buttonTheme = " ";
 if(theme === 'primary'){
-  color = 'blue';
+  forsolidify = ' bg-blue-500 shadow-blue ';
+  foroutline = " text-blue-700 hover: shadow-blue hover:bg-blue-700 ";
 }
 else if(theme === 'success'){
-  color = 'green';
+  forsolidify = ' bg-green-500 shadow-green ';
+  foroutline = " text-green-700 hover: shadow-green hover:bg-green-700 "
 }
 else if(theme === 'Warning'){
-  color = 'yellow';
+  forsolidify = ' bg-yellow-500 shadow-yellow ';
+  foroutline = " text-yellow-700 hover: shadow-yellow hover:bg-yellow-700 "
 }
 else if(theme === 'Danger'){
-  color = 'red';
+  forsolidify = ' bg-red-500 shadow-red ';
+  foroutline = " text-red-700 hover: shadow-red hover:bg-red-700 "
 }
 else if(theme === 'Secondary'){
-  color = 'indigo';
+  forsolidify = ' bg-indigo-500 shadow-indigo ';
+  foroutline = " text-indigo-700 hover: shadow-indigo hover:bg-indigo-700 "
 }
 else{
-  color='gray';
+  forsolidify = ' bg-gray-500 shadow-gray ';
+  foroutline = " text-gray-700 hover: shadow-gray hover:bg-gray-700 "
 }
 
 if(buttonType === "solidify"){
-themecolor = ' bg-'+color+'-500 text-white shadow-'+color+'  hover:shadow-none '
+buttonTheme = ' text-white hover:shadow-none ' + forsolidify
 }else{
-themecolor = ' bg-white text-'+color+'-700 border border-'+color+'-400 hover:shadow-'+color+' hover:bg-'+color+'-700 hover:text-white '
+buttonTheme = ' bg-white  border  hover:text-white ' + foroutline
 }
   
 
@@ -44,7 +50,7 @@ themecolor = ' bg-white text-'+color+'-700 border border-'+color+'-400 hover:sha
             <button
                  {...rest}
                  
-                  className={'transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed  '+ themecolor + className }
+                  className={'transition-shadow px-5 py-by text-base rounded-md disabled:cursor-not-allowed  '+ buttonTheme + className }
                    >
                  {children}
                 </button>
