@@ -7,6 +7,7 @@ import Input from "../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
 import Button from "../Component/Button/Button";
+import Progressbar from "../Component/ProgressBar/Progressbar";
 
 
 
@@ -58,6 +59,8 @@ const Login: React.FC<Props> = (props) => {
               </Link>
             </p>
           </div>
+
+        
           
           
       <form 

@@ -24,11 +24,12 @@ else if(performance > 25){
 else{
   color = "bg-blue-600"
 }
-
+const a = (Math.floor(performance/10)).toString()+"/12"
+console.log(a)
 
   return (
     <div className=" relative h-3 w-full m-3 bg-gray-300 rounded-full ">
-        <div  className={" absolute rounded-full h-3 w-96" + " " + color + (performance === 100 ? "  w-full " : " ")}  >
+        <div  className={" absolute rounded-full h-3 w-"+a + " " + color + (performance === 100 ? "  w-full " : " ")}  >
 
         </div>
     </div>
