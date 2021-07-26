@@ -29,7 +29,7 @@ const Template = (args : any) => <Input {...args} ></Input>
 export const Main: any = Template.bind({});
 Main.args = {
     touched : false,
-    error : "",
+    error : "invalid",
     Icon : FiUser,
     className : "",    
     placeholder: "Username",

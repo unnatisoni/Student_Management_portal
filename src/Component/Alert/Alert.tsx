@@ -14,28 +14,33 @@ const Alert: React.FC<Props> = ({children , theme , alertType}) => {
 
   const [open, setOpen] = useState(true);
   
-var color=' ' , themedesign=' ';
+var defaultColor=' ', outlineColor=' ' , themedesign=' ';
 if(alertType === 'primary'){
-  color = 'blue';
+  defaultColor= ' bg-blue-100 text-blue-400';
+  outlineColor= ' border-blue-500';
 }
 else if(alertType === 'success'){
-  color = 'green';
+  defaultColor= ' bg-green-100 text-green-400';
+  outlineColor= ' border-green-500';
 }
 else if(alertType === 'Warning'){
-  color = 'yellow';
+  defaultColor= ' bg-yellow-100 text-yellow-400';
+  outlineColor= ' border-yellow-500';
 }
 else if(alertType === 'Error'){
-  color = 'red';
+  defaultColor= ' bg-red-100 text-red-400';
+  outlineColor= ' border-red-500';
 }
 else if(alertType === 'Info'){
-  color = 'indigo';
+  defaultColor= ' bg-indigo-100 text-indigo-400';
+  outlineColor= ' border-indigo-500';
 }
 
 if(theme === 'Default'){
-  themedesign = ' bg-'+color+'-100 text-'+color+'-400';
+    themedesign = defaultColor;
 }
 else{
-  themedesign = 'border border-solid border-'+color+'-500 text-gray-400 bg-white';
+  themedesign = 'border border-solid text-gray-400 bg-white '+ outlineColor ;
 }
 
 
