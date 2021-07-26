@@ -28,7 +28,7 @@ else{
 
   return (
     <div className=" relative h-3 w-full m-3 bg-gray-300 rounded-full ">
-        <div  className={" absolute rounded-full h-3 w-"+ String(~~(performance/10))+"/12" + " "+ color + (performance === 100 ? "  w-full " : " ")}  >
+        <div  className={" absolute rounded-full h-3 w-96" + " " + color + (performance === 100 ? "  w-full " : " ")}  >
 
         </div>
     </div>
