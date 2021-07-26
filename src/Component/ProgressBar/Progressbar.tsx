@@ -4,31 +4,31 @@ interface Props{
   performance : number;
 }
 const Progressbar: React.FC<Props> = ({ performance}) => {
-let color=" ", status= "";
+let color=" ";
 
 if( performance > 85){
-  color = "gray"
+  color = "bg-gray-600"
 }
 else if(performance > 70){
-  color = "indigo"
+  color = "bg-indigo-600"
 }
 else if(performance > 55){
-  color = "red"
+  color = "bg-red-600"
 }
 else if(performance > 40){
-  color = "yellow"
+  color = "bg-yellow-600"
 }
 else if(performance > 25){
-  color = "green"
+  color = "bg-green-600"
 }
 else{
-  color = "blue"
+  color = "bg-blue-600"
 }
 
-status = ' bg-'+color+'-600  ';
+
   return (
     <div className=" relative h-3 w-full m-3 bg-gray-300 rounded-full ">
-        <div  className={" absolute rounded-full h-3 w-"+ String(~~(performance/10))+"/12" + status + (performance === 100 ? "  w-full " : " ")}  >
+        <div  className={" absolute rounded-full h-3 w-"+ String(~~(performance/10))+"/12" + " "+ color + (performance === 100 ? "  w-full " : " ")}  >
 
         </div>
     </div>

@@ -27,7 +27,7 @@ const Input: React.FC<Props> = ({touched, error, className, Icon , placeholder, 
                    className={" pl-8 w-full placeholder-gray-300 pb-4  border-gray-200 border-b outline-none   "+ className }
                 ></input>
                 <div className="h-2">
-                {touched && <div className="text-xs text-red-500 border-t border-red-500">{ error }</div> } </div>
+                {touched && error && <div className="text-xs text-red-500 border-t border-red-500">{ error }</div> } </div>
                </div>
               </div>          
             
