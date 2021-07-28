@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { Route, Switch } from "react-router-dom";
+import Navbar from "../Component/Navbar";
 import Sidebar from "../Component/Sidebar"
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
@@ -9,7 +10,8 @@ interface Props{
 const AppContainer: React.FC<Props> = (props) => {
   return (
     <div className="flex flex-row">
-        <Sidebar></Sidebar>
+       
+      
         <Switch>
             <Route path="/dashboard">
                 <DashboardPage></DashboardPage>
@@ -23,6 +25,7 @@ const AppContainer: React.FC<Props> = (props) => {
 
         </Switch>
     </div>
+   
 );
 };
 

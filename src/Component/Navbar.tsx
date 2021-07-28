@@ -1,14 +1,23 @@
-import React from "react";
+import React, { memo } from "react";
+import { useState } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { RiNotification2Line } from "react-icons/ri";
 import Avatar from "./Avatar/Avatar";
+import Button from "./Button/Button";
+import Sidebar from "./Sidebar";
+import { logout } from "../api";
+import { Link } from "react-router-dom";
+
 interface Props{
 }
 const Navbar: React.FC<Props> = (props) => {
+
+
   return (
-    <div className="w-full  ">
-    <div className=" flex flex-row justify-between bg-gray-900  h-14">
+    <div>
+    <div className="flex flex-col w-full">
+    <div className=" flex flex-row justify-between bg-gray-900 w-full  h-14">
         <div className="flex flex-row">
             <a href="\">
             <img className= " w-9  lg:w-8 py-2  " src="https://designreset.com/cork/ltr/demo4/assets/img/logo.svg" />
@@ -32,15 +41,23 @@ const Navbar: React.FC<Props> = (props) => {
 
         </div>
         
-        <div className="h-14 border-b shadow-md px-5 py-5 ">
-            <ul className="flex flex-row space-x-4 ">
-            <li><a href="\"><FiMenu className="w-5 h-5 text-gray-800" ></FiMenu></a></li>
+        <div className="h-14 border-b shadow-md px-5  flex justify-between ">
+            <ul className="flex flex-row space-x-4 py-5 ">
+            <li><a ><FiMenu className="w-5 h-5 text-gray-800" ></FiMenu></a></li>
+               
             <li><a href="\" className=" text-gray-500 ">Dashboard</a></li>
            </ul>
-            
-            
-
+           <Button theme="primary" buttonType="solidify" onClick={() =>{
+         logout();
+         window.location.href = "/login";
+        }}>
+          Logout</Button>
+         
         </div>
+       
+       
+        </div>
+       
 
         </div>
  
@@ -50,4 +67,4 @@ const Navbar: React.FC<Props> = (props) => {
 Navbar.defaultProps = {
 }
 
-export default Navbar;
+export default memo(Navbar);

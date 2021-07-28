@@ -7,7 +7,8 @@ import Input from "../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
 import Button from "../Component/Button/Button";
-import Progressbar from "../Component/ProgressBar/Progressbar";
+import { login } from "../api";
+
 
 
 
@@ -26,16 +27,13 @@ const Login: React.FC<Props> = (props) => {
       password : yup.string().required().min(8,({min}) => "Atleast "+ min + " character!!! ")
     }),
 
-    onSubmit :(data, {setSubmitting}) => {
+    onSubmit :(data) => {
       console.log("form submiting ",data);
-      setTimeout(() => {
-        console.log("form submit successfully ");
+      login(data).then(() =>{
         history.push("/dashboard");
-      }, 5000);
-      
+      });
     },
-     
-    })
+  });
 
   
   return (
