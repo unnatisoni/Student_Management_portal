@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { fetchGroups } from "../api";
 import Navbar from "../Component/Navbar";
 import Card from "../Component/Card";
 import Input from "../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
+import { fetchGroups } from "../api/groups";
+
 
 
 
@@ -16,6 +17,7 @@ const Dashboard: React.FC<Props> = (props) => {
   const [usergroup, setusergroup] = useState<any>(
     []
   );
+
 
   useEffect(() => {
     fetchGroups({
@@ -55,7 +57,7 @@ const Dashboard: React.FC<Props> = (props) => {
           className=" border-2 border-black shadow-lg h-10 py-3"
         ></Input>
       </div>
-
+      
       {usergroup.map((u: any) => (
         <Card
           Name={u.name}

@@ -6,14 +6,16 @@ import { FaSpinner } from "react-icons/fa";
 import Input from "../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
-import { login } from "../api";
+import { login } from "../api/auth";
+
+
+
 
 
 
 
 interface Props {}
 const Login: React.FC<Props> = (props) => {
-
   const history = useHistory();
 
   const {handleSubmit, getFieldProps, touched , isSubmitting, errors, isValid } = useFormik({

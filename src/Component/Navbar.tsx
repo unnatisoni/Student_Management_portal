@@ -2,19 +2,20 @@ import React, { memo } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { RiNotification2Line } from "react-icons/ri";
+import { logout } from "../api/auth";
+
+
 import Button from "./Button/Button";
-import { logout } from "../api";
 interface Props{
 }
 const Navbar: React.FC<Props> = (props) => {
-
 
   return (
     <div>
     <div className="flex flex-col w-full">
     <div className=" flex flex-row justify-between bg-gray-900 w-full  h-14">
         <div className="flex flex-row">
-            <a href="\">
+            <a href="\"> 
             <img className= " w-9  lg:w-8 py-2  " src="https://designreset.com/cork/ltr/demo4/assets/img/logo.svg" />
             </a>
                 <a hidden href="\" className="lg:block md:block text-3xl font-semibold  pl-5 py-2  text-white">CORK</a>
@@ -24,6 +25,7 @@ const Navbar: React.FC<Props> = (props) => {
             </form>
             </div>
             </div>
+            
          
             <div className=" flex flex-row space-x-2 justify-center py-2 px-5">
                 <a href="\"><img className=" py-1" src="https://designreset.com/cork/ltr/demo4/assets/img/ca.png"></img></a>
