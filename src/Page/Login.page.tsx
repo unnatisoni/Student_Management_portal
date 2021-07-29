@@ -1,12 +1,11 @@
-import React, { FC, memo } from "react";
+import React, {  memo } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ErrorMessage, useFormik, validateYupSchema } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
 import Input from "../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../Component/ToggleSwitch";
-import Button from "../Component/Button/Button";
 import { login } from "../api";
 
 

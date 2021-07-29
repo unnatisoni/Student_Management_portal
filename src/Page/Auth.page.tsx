@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import AuthHero from "../Component/AuthHero"
 import LoginPage from './Login.page';
-import { BrowserRouter, Route , Redirect, Switch } from 'react-router-dom';
+import {  Route , Redirect, Switch } from 'react-router-dom';
 import SignupPage from "./Signup.page";
 
 interface Props{

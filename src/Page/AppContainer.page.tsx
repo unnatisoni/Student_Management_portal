@@ -1,7 +1,5 @@
 import React, { memo } from "react";
 import { Route, Switch } from "react-router-dom";
-import Navbar from "../Component/Navbar";
-import Sidebar from "../Component/Sidebar"
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";

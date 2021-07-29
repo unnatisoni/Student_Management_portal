@@ -7,7 +7,7 @@ import Navbar from "../Component/Navbar";
 import Card from "../Component/Card";
 import Input from "../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
-import Sidebar from "../Component/Sidebar";
+
 
 
 interface Props {}

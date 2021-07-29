@@ -1,14 +1,9 @@
 import React, { memo } from "react";
-import { useState } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { RiNotification2Line } from "react-icons/ri";
-import Avatar from "./Avatar/Avatar";
 import Button from "./Button/Button";
-import Sidebar from "./Sidebar";
 import { logout } from "../api";
-import { Link } from "react-router-dom";
-
 interface Props{
 }
 const Navbar: React.FC<Props> = (props) => {
