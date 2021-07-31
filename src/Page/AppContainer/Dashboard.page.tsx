@@ -2,17 +2,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../Component/Navbar";
-import Card from "../Component/Card";
-import Input from "../Component/Input/Input";
+import Navbar from "../../Component/Navbar";
+import Card from "../../Component/Card";
+import Input from "../../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
-import { fetchGroups } from "../api/groups";
+import { fetchGroups } from "../../api/groups";
+import { User } from "../../models/Users";
 
 
 
 
-interface Props {}
-const Dashboard: React.FC<Props> = (props) => {
+interface Props {
+  user : User;
+}
+const Dashboard: React.FC<Props> = ({user}) => {
   const [query, setquery] = useState<String>();
   const [usergroup, setusergroup] = useState<any>(
     []
@@ -29,6 +32,8 @@ const Dashboard: React.FC<Props> = (props) => {
     });
   }, [query]);
 
+console.log("group data " ,usergroup)
+
   const search = (val: any) => {
     val = val.currentTarget.value;
     setquery(val);
@@ -37,7 +42,8 @@ const Dashboard: React.FC<Props> = (props) => {
   return (
     <div className=" flex flex-col w-full">
       <Navbar />
-
+      
+<div className="text-2xl font-bold py-8 text-center" >{user.first_name}</div>
      
       <Link to="/recordings">
         <span className="text-blue-700">
@@ -63,8 +69,7 @@ const Dashboard: React.FC<Props> = (props) => {
           Name={u.name}
           description={u.description}
           imageLink={u.group_image_url}
-          firstname={u.creator.first_name}
-          lastname={u.creator.last_name}
+         
         ></Card>
       ))}
     </div>

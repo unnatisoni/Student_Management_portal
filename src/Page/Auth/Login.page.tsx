@@ -3,10 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
-import Input from "../Component/Input/Input";
+import Input from "../../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
-import ToggleSwitch from "../Component/ToggleSwitch";
-import { login } from "../api/auth";
+import ToggleSwitch from "../../Component/ToggleSwitch";
+import { login } from "../../api/auth";
+import { User } from "../../models/Users";
 
 
 
@@ -14,7 +15,10 @@ import { login } from "../api/auth";
 
 
 
-interface Props {}
+interface Props {
+
+  onLogin : (user : User ) => void;
+}
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
 
@@ -30,7 +34,9 @@ const Login: React.FC<Props> = (props) => {
 
     onSubmit :(data) => {
       console.log("form submiting ",data);
-      login(data).then(() =>{
+      login(data).then((u) =>
+      {
+        props.onLogin(u);
         history.push("/dashboard");
       });
     },

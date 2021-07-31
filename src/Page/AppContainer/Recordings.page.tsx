@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import Navbar from "../Component/Navbar";
+import Navbar from "../../Component/Navbar";
 interface Props{
 }
 const Recordings: React.FC<Props> = (props) => {

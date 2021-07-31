@@ -37,3 +37,13 @@ interface LoginData {
   export const logout = () => {
     localStorage.removeItem(LS_AUTH_TOKEN);
   };
+
+  interface MeResponse {
+    data : User;
+  }
+  export const me = () => {
+    const url = BASE_URL + "/me";
+    return axios.get(url).then((response) => {
+      return response.data.data;
+    });
+  }

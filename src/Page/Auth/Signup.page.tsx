@@ -4,9 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 import {  useFormik } from "formik";
 import * as yup from "yup";
 import { FaSpinner } from "react-icons/fa";
-import Input from "../Component/Input/Input";
+import Input from "../../Component/Input/Input";
 import {FiAtSign, FiLock, FiUser} from "react-icons/fi"
-import ToggleSwitch from "../Component/ToggleSwitch";
+import ToggleSwitch from "../../Component/ToggleSwitch";
 
 
 interface Props{

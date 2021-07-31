@@ -3,8 +3,8 @@ interface Props {
   Name: string;
   imageLink: string;
   description: string;
-  firstname: string;
-  lastname: string;
+  firstname?: string;
+  lastname?: string;
 }
 const Card: React.FC<Props> = ({
   Name,

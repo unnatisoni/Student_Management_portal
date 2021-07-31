@@ -1,18 +1,20 @@
 import React, { memo } from "react";
 import { Route, Switch } from "react-router-dom";
+import { User } from "../../models/Users";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
 interface Props{
+    user : User;
 }
-const AppContainer: React.FC<Props> = (props) => {
+const AppContainer: React.FC<Props> = ({user}) => {
   return (
     <div className="flex flex-row">
        
       
         <Switch>
             <Route path="/dashboard">
-                <DashboardPage></DashboardPage>
+                <DashboardPage user = {user}></DashboardPage>
             </Route>
             <Route path="/recordings">
                 <RecordingsPage></RecordingsPage>
