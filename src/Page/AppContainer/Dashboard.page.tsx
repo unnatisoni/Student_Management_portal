@@ -8,14 +8,19 @@ import Input from "../../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
 import { fetchGroups } from "../../api/groups";
 import { User } from "../../models/Users";
+import { useContext } from "react";
+import AppContext from "../../App.context";
 
 
 
 
 interface Props {
-  user : User;
+ 
 }
-const Dashboard: React.FC<Props> = ({user}) => {
+const Dashboard: React.FC<Props> = () => {
+
+const { user } = useContext(AppContext);
+
   const [query, setquery] = useState<String>();
   const [usergroup, setusergroup] = useState<any>(
     []
@@ -43,7 +48,7 @@ console.log("group data " ,usergroup)
     <div className=" flex flex-col w-full">
       <Navbar />
       
-<div className="text-2xl font-bold py-8 text-center" >{user.first_name}</div>
+<div className="text-2xl font-bold py-8 text-center" >{user!.first_name}</div>
      
       <Link to="/recordings">
         <span className="text-blue-700">

@@ -8,6 +8,8 @@ import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../../Component/ToggleSwitch";
 import { login } from "../../api/auth";
 import { User } from "../../models/Users";
+import { useContext } from "react";
+import AppContext from "../../App.context";
 
 
 
@@ -17,16 +19,18 @@ import { User } from "../../models/Users";
 
 interface Props {
 
-  onLogin : (user : User ) => void;
+ 
 }
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
+  const { setUser } = useContext(AppContext)
 
   const {handleSubmit, getFieldProps, touched , isSubmitting, errors, isValid } = useFormik({
     initialValues : {
       email : " ",
       password : "",
     },
+    isInitialValid : false,
     validationSchema : yup.object().shape({
       email : yup.string().required().email(),
       password : yup.string().required().min(8,({min}) => "Atleast "+ min + " character!!! ")
@@ -36,7 +40,7 @@ const Login: React.FC<Props> = (props) => {
       console.log("form submiting ",data);
       login(data).then((u) =>
       {
-        props.onLogin(u);
+        setUser(u);
         history.push("/dashboard");
       });
     },

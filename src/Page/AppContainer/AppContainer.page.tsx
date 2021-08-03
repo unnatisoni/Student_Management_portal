@@ -5,16 +5,19 @@ import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.page";
 import RecordingsPage from "./Recordings.page";
 interface Props{
-    user : User;
+ 
 }
-const AppContainer: React.FC<Props> = ({user}) => {
+const AppContainer: React.FC<Props> = () => {
+
+
+
   return (
     <div className="flex flex-row">
        
       
         <Switch>
             <Route path="/dashboard">
-                <DashboardPage user = {user}></DashboardPage>
+                <DashboardPage ></DashboardPage>
             </Route>
             <Route path="/recordings">
                 <RecordingsPage></RecordingsPage>
