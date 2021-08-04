@@ -8,8 +8,7 @@ import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../../Component/ToggleSwitch";
 import { login } from "../../api/auth";
 import { User } from "../../models/Users";
-import { useContext } from "react";
-import AppContext from "../../App.context";
+import { useDispatch } from "react-redux";
 
 
 
@@ -23,7 +22,7 @@ interface Props {
 }
 const Login: React.FC<Props> = (props) => {
   const history = useHistory();
-  const { setUser } = useContext(AppContext)
+  const dispatch = useDispatch();
 
   const {handleSubmit, getFieldProps, touched , isSubmitting, errors, isValid } = useFormik({
     initialValues : {
@@ -40,7 +39,7 @@ const Login: React.FC<Props> = (props) => {
       console.log("form submiting ",data);
       login(data).then((u) =>
       {
-        setUser(u);
+        dispatch({type: "me/login", payload: u})
         history.push("/dashboard");
       });
     },

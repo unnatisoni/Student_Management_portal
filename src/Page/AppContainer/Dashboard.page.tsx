@@ -10,6 +10,8 @@ import { fetchGroups } from "../../api/groups";
 import { User } from "../../models/Users";
 import { useContext } from "react";
 import AppContext from "../../App.context";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store";
 
 
 
@@ -18,8 +20,7 @@ interface Props {
  
 }
 const Dashboard: React.FC<Props> = () => {
-
-const { user } = useContext(AppContext);
+ const user = useSelector<AppState, User | undefined>((state) => state.me)
 
   const [query, setquery] = useState<String>();
   const [usergroup, setusergroup] = useState<any>(

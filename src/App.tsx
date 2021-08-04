@@ -8,14 +8,16 @@ import AppContainerPageLazy from './Page/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './Page/Auth/Auth.lazy';
 import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
-import AppContext from './App.context';
 import { User } from './models/Users';
 import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState, meFetchAction } from './store';
 
 
 function App() { 
 
-  const [user, setUser] = useState<User>();
+  const user= useSelector<AppState,  User | undefined>((state) => state.me);
+  const dispatch = useDispatch();
 
   const token = localStorage.getItem( LS_AUTH_TOKEN );
 
@@ -23,14 +25,11 @@ function App() {
     if(!token) {
       return;
     }
-    me().then((u) => setUser(u));  
+    me().then((u) => dispatch(meFetchAction(u)));  
   },[]);
 
   
-  const data = useMemo(() => {
-    return {user , setUser };
-  
-  },[user, setUser]);
+
 
 
 if(!user && token){
@@ -42,7 +41,7 @@ if(!user && token){
 
   return (
 
-    <AppContext.Provider value = {{user, setUser}}>
+   
     <Suspense fallback = {<ImSpinner3 className=" h-32 w-32 m-auto my-48 animate-spin text-gray-500 " ></ImSpinner3>  } >
      <BrowserRouter>
       <Switch>
@@ -63,7 +62,7 @@ if(!user && token){
       </Switch>
       </BrowserRouter>
       </Suspense>
-      </AppContext.Provider>
+    
   );
 }
 
