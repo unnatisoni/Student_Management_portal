@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { AnyAction, createStore, Reducer } from "redux";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { AnyAction, createStore,  } from "redux";
 import { Group } from "./models/Group";
 import { User } from "./models/Users";
 
@@ -22,13 +22,22 @@ const initialState : AppState = {
 
 }
 
-const reducer = (currentState = initialState, dispatchedAction : AnyAction) => {
-    switch(dispatchedAction.type){
+const reducer = (state = initialState, action : AnyAction) => {
+    switch(action.type){
         case ME_FETCH:
         case 'me/login':
-            return {...currentState, me: dispatchedAction.payload}
+            return {...state, me: action.payload};
+        case "groups/query":
+            return {...state, groupQuery: action.payload };
+        case "groups/query_completed":
+            const groups = action.payload.groups as Group[];
+            const groupIds = groups.map((g) => g.id);
+            const groupMap = groups.reduce((prev, group) => {
+                return { ...prev, [group.id]: group};
+            }, {});
+            return {...state, groupQueryMap : {...state.groupQueryMap, [action.payload.query] : groupIds}, groups: {...state.groups, ...groupMap}, };
         default:
-            return currentState;
+            return state;
     }
 }
 
@@ -39,4 +48,5 @@ export const store = createStore(
 
 export const meFetchAction = (u : User) => ({type : ME_FETCH, payload : u})
 
-//export const useAppSelector : TypedUseSelectorHook<AppState> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+

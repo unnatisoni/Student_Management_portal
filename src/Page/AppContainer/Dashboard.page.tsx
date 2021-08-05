@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEffect } from "react";
 import { memo } from "react";
 import { Link } from "react-router-dom";
@@ -7,12 +6,8 @@ import Card from "../../Component/Card";
 import Input from "../../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
 import { fetchGroups } from "../../api/groups";
-import { User } from "../../models/Users";
-import { useContext } from "react";
-import AppContext from "../../App.context";
-import { useSelector } from "react-redux";
-import { AppState } from "../../store";
-
+import { useDispatch } from "react-redux";
+import {  useAppSelector } from "../../store";
 
 
 
@@ -20,29 +15,32 @@ interface Props {
  
 }
 const Dashboard: React.FC<Props> = () => {
- const user = useSelector<AppState, User | undefined>((state) => state.me)
-
-  const [query, setquery] = useState<String>();
-  const [usergroup, setusergroup] = useState<any>(
-    []
-  );
+ const user = useAppSelector((state) => state.me)
+ const query = useAppSelector((state) => state.groupQuery);
+ const groups = useAppSelector((state) => { 
+const groupsIds = state.groupQueryMap[state.groupQuery] || [];
+const groups = groupsIds.map((id) => state.groups[id]);
+return groups;
+});
+const dispatch = useDispatch();  
 
 
   useEffect(() => {
     fetchGroups({
       status: "all-groups",
       query: query,
-    }).then((response) => {
-      console.log(response);
-      setusergroup(response);
+    }).then((groups) => {
+      console.log(groups);
+      dispatch({type: "groups/query_completed", payload: {groups : groups, query: query},
+    });
     });
   }, [query]);
 
-console.log("group data " ,usergroup)
+console.log("group data " , groups)
 
   const search = (val: any) => {
     val = val.currentTarget.value;
-    setquery(val);
+    dispatch({type : "groups/query", payload : val});
   };
 
   return (
@@ -60,6 +58,7 @@ console.log("group data " ,usergroup)
 
       <div className=" self-center w-10/12 lg:w-1/3 md:w-1/3  ">
         <Input
+        
           onChange={search}
           type="text"
           id="search"
@@ -70,11 +69,11 @@ console.log("group data " ,usergroup)
         ></Input>
       </div>
       
-      {usergroup.map((u: any) => (
+      {groups.map((group) => (
         <Card
-          Name={u.name}
-          description={u.description}
-          imageLink={u.group_image_url}
+          Name={group.name}
+          description={group.description}
+          imageLink={group.group_image_url}
          
         ></Card>
       ))}

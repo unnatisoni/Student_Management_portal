@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { useEffect } from 'react';
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter, Route , Redirect, Switch } from 'react-router-dom';
 import { me } from './api/auth';
 import { LS_AUTH_TOKEN } from './api/Base';
@@ -8,15 +7,13 @@ import AppContainerPageLazy from './Page/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './Page/Auth/Auth.lazy';
 import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
-import { User } from './models/Users';
-import { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppState, meFetchAction } from './store';
+import { useDispatch } from 'react-redux';
+import {  meFetchAction, useAppSelector } from './store';
 
 
 function App() { 
 
-  const user= useSelector<AppState,  User | undefined>((state) => state.me);
+  const user= useAppSelector((state) => state.me);
   const dispatch = useDispatch();
 
   const token = localStorage.getItem( LS_AUTH_TOKEN );
