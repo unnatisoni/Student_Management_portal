@@ -8,6 +8,7 @@ import { FiSearch } from "react-icons/fi";
 import { fetchGroups } from "../../api/groups";
 import { useDispatch } from "react-redux";
 import {  useAppSelector } from "../../store";
+import { groupActions } from "../../actions/groups.actions";
 
 
 
@@ -22,7 +23,7 @@ const groupsIds = state.groups.queryMap[state.groups.query] || [];
 const groups = groupsIds.map((id) => state.groups.byId[id]);
 return groups;
 });
-const dispatch = useDispatch();  
+
 
 
   useEffect(() => {
@@ -31,16 +32,13 @@ const dispatch = useDispatch();
       query: query,
     }).then((groups) => {
       console.log(groups);
-      dispatch({type: "groups/query_completed", payload: {groups : groups, query: query},
-    });
+      groupActions.queryCompleted(query,groups)
     });
   }, [query]);
 
-console.log("group data " , groups)
-
   const search = (val: any) => {
     val = val.currentTarget.value;
-    dispatch({type : "groups/query", payload : val});
+    groupActions.query(val);
   };
 
   return (

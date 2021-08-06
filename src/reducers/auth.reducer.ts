@@ -1,9 +1,12 @@
 import { Reducer } from "redux"
 import { isIfStatement } from "typescript";
-import { ME_FETCH, ME_LOGIN } from "../actions/auth.actions"
+import { ME_FETCH, ME_LOGIN } from "../actions/actions.const";
+
+
 
 export interface AuthState {
     id?: number;
+
 }
 
 const initialState = {

@@ -7,15 +7,13 @@ import AppContainerPageLazy from './Page/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './Page/Auth/Auth.lazy';
 import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
-import { useDispatch } from 'react-redux';
 import {  useAppSelector } from './store';
-import { meFetchAction } from './actions/auth.actions';
+import { authActions} from './actions/auth.actions';
 
 
 function App() { 
 
   const user= useAppSelector((state) => state.auth.id && state.users.byId[state.auth.id]);
-  const dispatch = useDispatch();
 
   const token = localStorage.getItem( LS_AUTH_TOKEN );
 
@@ -23,7 +21,7 @@ function App() {
     if(!token) {
       return;
     }
-    me().then((u) => dispatch(meFetchAction(u)));  
+    me().then((u) => authActions.fetch(u));  
   },[]);
 
 

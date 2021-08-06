@@ -7,9 +7,8 @@ import Input from "../../Component/Input/Input";
 import {FiLock, FiUser} from "react-icons/fi"
 import ToggleSwitch from "../../Component/ToggleSwitch";
 import { login } from "../../api/auth";
-import { User } from "../../models/Users";
 import { useDispatch } from "react-redux";
-import { meLoginAction } from "../../actions/auth.actions";
+import { authActions } from "../../actions/auth.actions";
 
 
 
@@ -40,7 +39,7 @@ const Login: React.FC<Props> = (props) => {
       console.log("form submiting ",data);
       login(data).then((u) =>
       {
-        dispatch(meLoginAction(u))
+        authActions.login(u);
         history.push("/dashboard");
       });
     },
