@@ -1,29 +1,28 @@
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import { AnyAction, createStore,  } from "redux";
-import { Group } from "./models/Group";
-import { User } from "./models/Users";
+import {  combineReducers, createStore,  } from "redux";
+import { authReducer } from "./reducers/auth.reducer";
+import { groupReducer } from "./reducers/groups.reducer";
+import { userReducer } from "./reducers/users.reducer";
 
-const ME_FETCH = "me/fetch";
 
-export interface AppState {
-    me? : User;
-    isSidebarOpen: boolean;
-    groupQuery: string;
-    groupQueryMap : { [query : string] : number[] };
-    groups: { [id: number] : Group};
-}
 
-const initialState : AppState = {
-    me : undefined,
-    isSidebarOpen : true,
-    groupQuery: "",
-    groupQueryMap: {},
-    groups: {},
+const reducer = combineReducers ({
+    users: userReducer,
+    groups: groupReducer,
+    auth: authReducer
+});
 
-}
+export const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
 
-const reducer = (state = initialState, action : AnyAction) => {
-    switch(action.type){
+type AppState = ReturnType<typeof store.getState>;
+
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+
+/*
+switch(action.type){
         case ME_FETCH:
         case 'me/login':
             return {...state, me: action.payload};
@@ -39,14 +38,26 @@ const reducer = (state = initialState, action : AnyAction) => {
         default:
             return state;
     }
+
+
+
+    const reducer = (state = initialState, action : AnyAction) => {
+    const newState = {
+    auth: authReducer(state.auth, action),
+    users: userReducer( state.users , action),
+    groups : groupReducer(state.groups, action),
+    };
+    if( newState.auth === state.auth && newState.users === state.users && newState.groups === state.groups) {
+        return state;
+    }
+    return newState;
+};
+
+
+export interface AppState {
+    auth: AuthState;
+    users : UserState;
+    groups : GroupState;
 }
 
-export const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    );
-
-export const meFetchAction = (u : User) => ({type : ME_FETCH, payload : u})
-
-export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
-
+    */

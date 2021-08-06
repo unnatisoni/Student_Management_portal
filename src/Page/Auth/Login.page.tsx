@@ -9,6 +9,7 @@ import ToggleSwitch from "../../Component/ToggleSwitch";
 import { login } from "../../api/auth";
 import { User } from "../../models/Users";
 import { useDispatch } from "react-redux";
+import { meLoginAction } from "../../actions/auth.actions";
 
 
 
@@ -39,7 +40,7 @@ const Login: React.FC<Props> = (props) => {
       console.log("form submiting ",data);
       login(data).then((u) =>
       {
-        dispatch({type: "me/login", payload: u})
+        dispatch(meLoginAction(u))
         history.push("/dashboard");
       });
     },

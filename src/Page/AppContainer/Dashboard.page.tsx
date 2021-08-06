@@ -15,11 +15,11 @@ interface Props {
  
 }
 const Dashboard: React.FC<Props> = () => {
- const user = useAppSelector((state) => state.me)
- const query = useAppSelector((state) => state.groupQuery);
+ const userFirstName = useAppSelector((state) => state.users.byId[state.auth.id!].first_name)
+ const query = useAppSelector((state) => state.groups.query);
  const groups = useAppSelector((state) => { 
-const groupsIds = state.groupQueryMap[state.groupQuery] || [];
-const groups = groupsIds.map((id) => state.groups[id]);
+const groupsIds = state.groups.queryMap[state.groups.query] || [];
+const groups = groupsIds.map((id) => state.groups.byId[id]);
 return groups;
 });
 const dispatch = useDispatch();  
@@ -47,7 +47,7 @@ console.log("group data " , groups)
     <div className=" flex flex-col w-full">
       <Navbar />
       
-<div className="text-2xl font-bold py-8 text-center" >{user!.first_name}</div>
+<div className="text-2xl font-bold py-8 text-center" >{userFirstName}</div>
      
       <Link to="/recordings">
         <span className="text-blue-700">

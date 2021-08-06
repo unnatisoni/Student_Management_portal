@@ -8,12 +8,13 @@ import AuthPageLazy from './Page/Auth/Auth.lazy';
 import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
 import { useDispatch } from 'react-redux';
-import {  meFetchAction, useAppSelector } from './store';
+import {  useAppSelector } from './store';
+import { meFetchAction } from './actions/auth.actions';
 
 
 function App() { 
 
-  const user= useAppSelector((state) => state.me);
+  const user= useAppSelector((state) => state.auth.id && state.users.byId[state.auth.id]);
   const dispatch = useDispatch();
 
   const token = localStorage.getItem( LS_AUTH_TOKEN );
@@ -25,20 +26,14 @@ function App() {
     me().then((u) => dispatch(meFetchAction(u)));  
   },[]);
 
-  
-
-
 
 if(!user && token){
   return <ImSpinner3 className=" h-32 w-32 m-auto my-48 animate-spin text-gray-500 " />
 }
 
 
-
-
   return (
 
-   
     <Suspense fallback = {<ImSpinner3 className=" h-32 w-32 m-auto my-48 animate-spin text-gray-500 " ></ImSpinner3>  } >
      <BrowserRouter>
       <Switch>
