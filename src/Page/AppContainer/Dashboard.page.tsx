@@ -9,6 +9,7 @@ import { fetchGroups } from "../../api/groups";
 import { useDispatch } from "react-redux";
 import {  useAppSelector } from "../../store";
 import { groupActions } from "../../actions/groups.actions";
+import { groupsSelector } from "../../selectors/groups.selectors";
 
 
 
@@ -18,11 +19,7 @@ interface Props {
 const Dashboard: React.FC<Props> = () => {
  const userFirstName = useAppSelector((state) => state.users.byId[state.auth.id!].first_name)
  const query = useAppSelector((state) => state.groups.query);
- const groups = useAppSelector((state) => { 
-const groupsIds = state.groups.queryMap[state.groups.query] || [];
-const groups = groupsIds.map((id) => state.groups.byId[id]);
-return groups;
-});
+ const groups = useAppSelector(groupsSelector);
 
 
 

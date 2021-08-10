@@ -9,11 +9,12 @@ import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
 import {  useAppSelector } from './store';
 import { authActions} from './actions/auth.actions';
+import { meSelector } from './selectors/auth.selectors';
 
 
 function App() { 
 
-  const user= useAppSelector((state) => state.auth.id && state.users.byId[state.auth.id]);
+  const user= useAppSelector(meSelector);
 
   const token = localStorage.getItem( LS_AUTH_TOKEN );
 
