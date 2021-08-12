@@ -19,10 +19,10 @@ const Card: React.FC<Props> = ({
   }
 
   return (
-    <div className="flex flex-col space-y-5 justify-center text-center lg:justify-start lg:text-left md:justify-start md:text-left  md:flex-row lg:flex-row  space-x-4 py-4 my-2 bg-gray-100 mx-10 hover:bg-gray-400 duration-200 hover:text-white font-serif ">
+    <div className="flex flex-col space-y-5 mb-5 w-full rounded-lg justify-center text-center lg:justify-start lg:text-left md:justify-start md:text-left  md:flex-row lg:flex-row  space-x-4 py-4 my-2 bg-gray-200 lg:mx-10 hover:bg-gray-600 duration-200 hover:text-white font-serif ">
       <div>
         <img
-          className=" flex justify-center mx-auto lg:justify-start lg:mx-5 h-20 w-20 rounded-full lg:mt-6 md:mt-10"
+          className=" flex justify-center mx-auto lg:justify-start lg:mx-5 h-20 w-20 rounded-full lg:mt-2 md:mt-10"
           src={imageLink}
           onError={(reflink: any) => {
             reflink.target.src =
@@ -35,12 +35,6 @@ const Card: React.FC<Props> = ({
           {Name}
         </h2>
         <p>{description}</p>
-        <div>
-          <h2 className=" text-lg "> creator </h2>
-          <p>
-            {firstname} {lastname}
-          </p>
-        </div>
       </div>
     </div>
   );

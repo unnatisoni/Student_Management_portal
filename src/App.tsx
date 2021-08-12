@@ -42,7 +42,7 @@ if(!user && token){
        <Route path={["/Login", "/Signup"]} exact>
          { user ? <Redirect to="/dashboard" /> :  <AuthPageLazy /> }
        </Route>
-       <Route path={["/dashboard", "/recordings", "/batch/:batchNumber/lecture/:lectureNumber"]} exact>
+       <Route path={["/dashboard", "/recordings", "/batch/:batchNumber/lecture/:lectureNumber", "/grouplist"]} exact>
         { user ? <AppContainerPageLazy  /> : <Redirect to="/login" /> }
        </Route>
         <Route>
