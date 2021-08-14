@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Route, Switch } from "react-router-dom";
 import Navbar from "../../Component/Navbar";
 import Sidebar from "../../Component/Sidebar";
+import AccountSetting from "./AccountSetting.page";
 import DashboardPage from "./Dashboard.page";
 import GroupListPage from "./GroupList.page";
 import LecturePage from "./Lecture.page";
@@ -30,6 +31,9 @@ const AppContainer: React.FC<Props> = () => {
             </Route>
             <Route path="/grouplist">
                 <GroupListPage></GroupListPage>
+            </Route>
+            <Route path="/accountsetting">
+                <AccountSetting></AccountSetting>
             </Route>
 
         </Switch>

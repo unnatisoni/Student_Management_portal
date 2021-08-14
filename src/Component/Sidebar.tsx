@@ -33,6 +33,7 @@ const Sidebar: React.FC<Props> = () => {
       <SidebarElement goto="./dashboard">Dashboard</SidebarElement>
       <SidebarElement goto="/recordings">Recordings</SidebarElement>
       <SidebarElement goto="/grouplist">Group List</SidebarElement>
+      <SidebarElement goto="/accountsetting" > Account Setting </SidebarElement>
 
       <Button className=" w-80 shadow-none" theme="primary" buttonType="solidify" onClick={() =>{
          logout();
