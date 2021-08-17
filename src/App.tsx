@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { Suspense } from 'react';
 import { BrowserRouter, Route , Redirect, Switch } from 'react-router-dom';
-import { me } from './api/auth';
 import { LS_AUTH_TOKEN } from './api/Base';
 import AppContainerPageLazy from './Page/AppContainer/AppContainer.lazy';
 import AuthPageLazy from './Page/Auth/Auth.lazy';
 import NotFoundPage from './Page/NotFound.page';
 import {ImSpinner3} from "react-icons/im"
 import {  useAppSelector } from './store';
-import { authActions} from './actions/auth.actions';
 import { meSelector } from './selectors/auth.selectors';
+import { me } from './middleware/auth.middleware';
 
 
 function App() { 
@@ -22,7 +21,7 @@ function App() {
     if(!token) {
       return;
     }
-    me().then((u) => authActions.fetch(u));  
+    me();
   },[]);
 
 

@@ -1,13 +1,29 @@
+import { CancelTokenSource } from "axios";
 import { createSelector } from "reselect";
+import { CancellationToken } from "typescript";
 import {AppState } from "../store";
 import { groupStateSelector } from "./app.selectors";
 
+const cancelationTokens: {[query: string]: CancelTokenSource} = {}
 
 export const groupQuerySelector = createSelector([groupStateSelector], (groupState) => groupState.query);
 
-const groupQueryMapSelector = createSelector([groupStateSelector], (groupState) => groupState.queryMap);
+export const groupQueryMapSelector = createSelector([groupStateSelector], (groupState) => groupState.queryMap); 
 
 const groupByIdSelector = createSelector([groupStateSelector], (groupState) => groupState.byId);
+
+ const groupsLoadingQuerySelector = createSelector(
+    [groupStateSelector],
+    (groupState) => groupState.loadingQuery
+);
+
+export const groupsLoadingSelector = createSelector(
+    [groupQuerySelector, groupsLoadingQuerySelector],
+    (query, loadingMap) => loadingMap[query]
+);
+
+
+
 
 
 export const groupsSelector = (state: AppState) => {

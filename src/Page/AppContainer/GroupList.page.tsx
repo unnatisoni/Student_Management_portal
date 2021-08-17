@@ -6,8 +6,11 @@ import { FiSearch } from "react-icons/fi";
 import { fetchGroups } from "../../api/groups";
 import { useAppSelector } from "../../store";
 import { groupActions } from "../../actions/groups.actions";
-import { groupsSelector } from "../../selectors/groups.selectors";
+import { groupQuerySelector, groupsLoadingSelector, groupsSelector } from "../../selectors/groups.selectors";
 import { sidebarSelector } from "../../selectors/sidebar.selector";
+import { FaSpinner } from "react-icons/fa";
+import { fetchGroups as fetchmiddleware } from "../../middleware/groups.middleware";
+import NoData from "../../Component/NoData";
 
 interface Props {}
 const GroupList: React.FC<Props> = () => {
@@ -15,10 +18,10 @@ const GroupList: React.FC<Props> = () => {
     (state) =>
       state.users.byId[state.auth.id!].first_name
   );
-  const query = useAppSelector(
-    (state) => state.groups.query
-  );
-  const groups = useAppSelector(groupsSelector);
+
+  const query = useAppSelector(groupQuerySelector);
+  const groups = useAppSelector( groupsSelector);
+  const loading = useAppSelector(groupsLoadingSelector);
 
   useEffect(() => {
     fetchGroups({
@@ -31,8 +34,7 @@ const GroupList: React.FC<Props> = () => {
   }, [query]);
 
   const search = (val: any) => {
-    val = val.currentTarget.value;
-    groupActions.query(val);
+    fetchmiddleware({query: val.target.value, status: "all-groups" });
   };
 
   const sidebarOpen = useAppSelector(
@@ -53,7 +55,7 @@ const GroupList: React.FC<Props> = () => {
         {userFirstName}
       </div>
 
-      <div className="md:pr-20 w-full sm:w-full lg:w-full sm:px-1 lg:px-40 md:px-20 mb-5 ">
+      <div className=" flex flex-row md:pr-20 w-full sm:w-full lg:w-full sm:px-1 lg:px-40 md:px-20 mb-5 ">
         <Input
           onChange={search}
           type="text"
@@ -63,15 +65,17 @@ const GroupList: React.FC<Props> = () => {
           Iconclass=" hidden sm:block md:block  lg:block md:block sm:block my-2 right-3 "
           className="border-2 border-black shadow-lg h-10 py-3"
         ></Input>
+        { loading && <FaSpinner className=" my-auto mx-2 animate-spin" ></FaSpinner>}
       </div>
 
-      {groups.map((group) => (
+      {groups.map((group : any) => (
         <Card
           Name={group.name}
           description={group.description}
           imageLink={group.group_image_url}
         ></Card>
       ))}
+      {!loading && groups.length === 0 &&  <NoData /> }
     </div>
   );
 };

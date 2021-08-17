@@ -1,4 +1,5 @@
 import axios from "axios";
+import { authActions } from "../actions/auth.actions";
 import { User } from "../models/Users";
 import { BASE_URL, LS_AUTH_TOKEN } from "./Base";
 
@@ -43,7 +44,6 @@ interface LoginData {
   }
   export const me = () => {
     const url = BASE_URL + "/me";
-    return axios.get(url).then((response) => {
-      return response.data.data;
-    });
+    return axios.get(url).then((response) => response.data.data)
+
   }

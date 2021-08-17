@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const BASE_URL = "https://api-dev.domecompass.com";
 export const LS_AUTH_TOKEN = "Auth token ";
 
@@ -24,7 +23,8 @@ axios.interceptors.request.use((config) => {
   axios.interceptors.response.use(
     undefined,
     (error) => {
-      if (error.response.data.code === 9101) {
+      
+      if ( error.response?.data?.code === 9101) {
         localStorage.removeItem(LS_AUTH_TOKEN);
         window.location.href = "/login";
       }
