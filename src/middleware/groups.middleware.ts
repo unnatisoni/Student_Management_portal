@@ -1,24 +1,30 @@
 import axios, { Canceler, CancelTokenSource } from "axios";
 import { groupActions } from "../actions/groups.actions";
 import { GroupRequest, fetchGroups as fetchGroupsAPI } from "../api/groups";
-import { groupQueryMapSelector } from "../selectors/groups.selectors";
 import { store } from "../store";
 
 
+let canceler : Canceler | undefined;
 export const fetchGroups = (request : GroupRequest) => {
 
-const queryMap = groupQueryMapSelector(store.getState());
-const groupIds = queryMap[request.query];
-const query = request.query;
- groupActions.query(query, !groupIds);
+ const state = store.getState();
+ 
+ const query = request.query;
 
-if(groupIds){
-    return;
-} 
+ groupActions.query(query);
+  
+canceler && canceler();
+
+   
+   const { cancel, token } = axios.CancelToken.source();
+   canceler = cancel;
+  
+
+ 
+   fetchGroupsAPI(request, token).then((groups) => {
+        groupActions.queryCompleted(query, groups);
+        canceler  = undefined;
+   })
 
 
-
- fetchGroupsAPI(request).then((groups) => {
-    groupActions.queryCompleted(query, groups);
- });
 };

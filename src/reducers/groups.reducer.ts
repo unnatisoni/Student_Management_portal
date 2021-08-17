@@ -15,14 +15,14 @@ export interface GroupState
   query: string;
   queryMap: { [query: string]: number[] };
   selectedId?: number;
-  loadingQuery : {[query: string]: boolean};
+  loading : boolean;
 }
 
 const initialState = {
   byId: {},
   query: "",
   queryMap: {},
-  loadingQuery : {},
+  loading: false,
 };
 
 export const groupReducer: Reducer<GroupState> = (
@@ -31,7 +31,7 @@ export const groupReducer: Reducer<GroupState> = (
 ) => {
   switch (action.type) {
     case GROUPS_QUERY:
-      return { ...state, query: action.payload.query, loadingQuery: {...state.loadingQuery, [action.payload.query]: action.payload.loading } 
+      return { ...state, query: action.payload, loading: true 
     };
     
     case GROUPS_QUERY_COMPLETED:
@@ -48,10 +48,7 @@ export const groupReducer: Reducer<GroupState> = (
           ...newState.queryMap,
           [action.payload.query]: groupIds,
         },
-        loadingQuery: {
-          ...newState.loadingQuery,
-          [action.payload.query]: false,
-        }
+        loading: false,
       };
     default:
       return state;
