@@ -31,7 +31,7 @@ export const groupReducer: Reducer<GroupState> = (
 ) => {
   switch (action.type) {
     case GROUPS_QUERY:
-      return { ...state, query: action.payload, loadingQuery: {...state.loadingQuery, [action.payload]: true } 
+      return { ...state, query: action.payload.query, loadingQuery: {...state.loadingQuery, [action.payload.query]: action.payload.loading } 
     };
     
     case GROUPS_QUERY_COMPLETED:
