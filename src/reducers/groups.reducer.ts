@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import {
-  GROUPS_QUERY,
+  GROUPS_QUERY_CHANGED,
   GROUPS_QUERY_COMPLETED,
 } from "../actions/actions.const";
 import { Group } from "../models/Group";
@@ -30,7 +30,7 @@ export const groupReducer: Reducer<GroupState> = (
   action
 ) => {
   switch (action.type) {
-    case GROUPS_QUERY:
+    case GROUPS_QUERY_CHANGED:
       return { ...state, query: action.payload, loading: true 
     };
     

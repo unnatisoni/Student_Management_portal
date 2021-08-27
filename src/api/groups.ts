@@ -1,6 +1,6 @@
 import { Group } from "../models/Group"
 import axios, { CancelToken, CancelTokenSource } from "axios";
-import { BASE_URL } from "./Base";
+import { BASE_URL, get } from "./Base";
 
 
 export interface GroupRequest {
@@ -23,13 +23,7 @@ export interface GroupRequest {
     token?:CancelToken
   ) => {
     const url = BASE_URL + "/groups";
-    return axios
-      .get(url, { params: data, cancelToken: token})
-      .then((response) => {
-        console.log(response.data.data);
-       
-        return response.data.data;
-      })
-      .catch((e) => console.log(e));
+    return get(url, { params: data, cancelToken: token})
+      
   };
   

@@ -3,14 +3,14 @@ import { memo } from "react";
 import Card from "../../Component/Card";
 import Input from "../../Component/Input/Input";
 import { FiSearch } from "react-icons/fi";
-import { fetchGroups } from "../../api/groups";
 import { useAppSelector } from "../../store";
-import { groupActions } from "../../actions/groups.actions";
+import { queryAction } from "../../actions/groups.actions";
 import { groupQuerySelector, groupsLoadingSelector, groupsSelector } from "../../selectors/groups.selectors";
 import { sidebarSelector } from "../../selectors/sidebar.selector";
 import { FaSpinner } from "react-icons/fa";
-import { fetchGroups as fetchmiddleware } from "../../middleware/groups.middleware";
 import NoData from "../../Component/NoData";
+import { useDispatch } from "react-redux";
+
 
 interface Props {}
 const GroupList: React.FC<Props> = () => {
@@ -22,19 +22,13 @@ const GroupList: React.FC<Props> = () => {
   const query = useAppSelector(groupQuerySelector);
   const groups = useAppSelector( groupsSelector);
   const loading = useAppSelector(groupsLoadingSelector);
+  const dispatch = useDispatch(); 
 
-  useEffect(() => {
-    fetchGroups({
-      status: "all-groups",
-      query: query,
-    }).then((groups) => {
-      console.log(groups);
-      groupActions.queryCompleted(query, groups);
-    });
-  }, [query]);
+ 
 
   const search = (val: any) => {
-    fetchmiddleware({query: val.target.value, status: "all-groups" });
+     dispatch(queryAction(val.target.value))
+     val.preventDefault();
   };
 
   const sidebarOpen = useAppSelector(
